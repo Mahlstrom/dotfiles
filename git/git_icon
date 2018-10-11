@@ -32,7 +32,7 @@ function __git_icon(){
                 elif [[ $string == *"Your branch is behind"* ]]; then
                     echo -ne $Red${ICON_BEHIND}
                 else
-                    echo -ne $Gre${ICON_GITOK}$RCol
+                    echo -ne $Gre${ICON_GITOK}
                 fi
             else
                 echo -ne $Gre${ICON_GITOK}$RCol
