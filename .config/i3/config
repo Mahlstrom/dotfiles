@@ -11,6 +11,62 @@
 
 set $mod Mod4
 
+
+set $dell "DP-2-8"
+set $apple "DP-1"
+set $laptop "eDP-1"
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "term"
+set $ws2 "Browse"
+set $ws3 "PyCharm"
+set $ws4 "IDEA"
+set $ws5 "PHPStorm"
+set $ws6 "6"
+set $ws7 "Hiri"
+set $ws8 "Spotify"
+set $ws9 "Subl"
+set $ws10 "Shit"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Def workspace display
+workspace $ws1 output $dell
+workspace $ws2 output $apple
+workspace $ws3 output $apple
+workspace $ws4 output $apple
+workspace $ws5 output $apple
+workspace $ws7 output $apple
+workspace $ws8 output $laptop
+workspace $ws9 output $laptop
+workspace $ws10 output $laptop
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+
+
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 8
@@ -79,12 +135,17 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # Volume
-bindsym $mod+Ctrl+minus exec amixer set Master 2%- unmute
-bindsym $mod+Ctrl+plus exec amixer set Master 2%+ unmute
-bindsym $mod+Ctrl+m exec amixer set Master toggle
+bindsym $mod+Ctrl+Down exec amixer set Master 2%- unmute; exec pkill -RTMIN+10 i3blocks
+bindsym $mod+Ctrl+Up exec amixer set Master 2%+ unmute; exec pkill -RTMIN+10 i3blocks
+bindsym $mod+Ctrl+m exec amixer set Master toggle; exec pkill -RTMIN+10 i3blocks
+
+bindsym Pause exec ~/.dotfiles/bin/sp play; exec pkill -RTMIN+10 i3blocks
+bindsym $mod+Ctrl+Right exec ~/.dotfiles/bin/sp next; exec pkill -RTMIN+10 i3blocks
+bindsym $mod+Ctrl+Left exec ~/.dotfiles/bin/sp prev; exec pkill -RTMIN+10 i3blocks
+
 
 # Lock screen
-bindsym $mod+Ctrl+l exec i3lock -c000000
+bindsym $mod+Ctrl+l exec i3lock -c000000;exec xset dpms force standby
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -104,59 +165,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Resizing by 1
-bindsym $mod+Ctrl+Right resize shrink width 1 px or 1 ppt
-bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
-bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
-bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
+#bindsym $mod+Ctrl+Right resize shrink width 1 px or 1 ppt
+#bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
+#bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
+#bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
 
 # Resizing by 10
-bindsym $mod+Ctrl+Shift+Right resize shrink width 10 px or 10 ppt
-bindsym $mod+Ctrl+Shift+Up resize grow height 10 px or 10 ppt
-bindsym $mod+Ctrl+Shift+Down resize shrink height 10 px or 10 ppt
-bindsym $mod+Ctrl+Shift+Left resize grow width 10 px or 10 ppt
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-# Def workspace display
-workspace $ws1 output HDMI-2
-workspace $ws2 output DP-1
-workspace $ws3 output eDP-1
-workspace $ws4 output DP-1
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+#bindsym $mod+Ctrl+Shift+Right resize shrink width 10 px or 10 ppt
+#bindsym $mod+Ctrl+Shift+Up resize grow height 10 px or 10 ppt
+#bindsym $mod+Ctrl+Shift+Down resize shrink height 10 px or 10 ppt
+#bindsym $mod+Ctrl+Shift+Left resize grow width 10 px or 10 ppt
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -191,16 +209,30 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-bindsym $mod+Shift+w /opt/google/chrome/chrome
 
-assign [class="^.*jetbrains-idea.*$"] → $ws4
-for_window [class="^.*jetbrains-idea.*$"] floating enable
-for_window [class="^.*jetbrains-idea.*$"] resize set 2550 1391
-for_window [class="^.*jetbrains-idea.*$"] move absolute position 0 0
+for_window [class="^.*jetbrains-idea.*$"] layout tabbed
+for_window [class="^.*jetbrains-idea.*$"] move to workspace $ws4
+for_window [class="^.*jetbrains-idea.*$"] resize set 2558 1420
+for_window [class="^.*jetbrains-idea.*$"] move absolute position 2558 0
+for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
+
+for_window [title=".*Chromium"] move to workspace $ws2
+for_window [title=".*Chromium"] fullscreen
+for_window [title=".*Sublime Text.*"] move to workspace $ws9
+for_window [title=".*Spotify.*"] move to workspace $ws8
+#assign [class="jetbrains-idea"] $ws4
+#for_window [class="jetbrains-idea"] floating enable
+#for_window [class="jetbrains-idea"] move workspace $ws4
+#for_window [class="jetbrains-idea"] resize set 2550 1391
+#for_window [class="jetbrains-idea"] move absolute position 0 0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3blocks
 }
-exec_always "xrandr --output HDMI-2 --mode 2560x1440 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --mode 2560x1440 --pos 2560x0 --rotate normal --output eDP-1 --primary --mode 2560x1600 --pos 0x1440 --rotate normal --output DP-2 --off"
+exec_always "xrandr --output DP-2-8 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-2-8 --off --output DP-1 --mode 2560x1440 --pos 2560x0 --rotate normal --output eDP-1 --mode 2560x1600 --pos 0x1440 --rotate normal --output DP-2 --off"
+exec --no-startup-id xset dpms 600
+exec xautolock -time 15 -locker 'i3lock -c 000000' &
+exec compton
+exec feh --bg-scale ~/Downloads/O9yrcEO-arch-linux-wallpaper.jpg

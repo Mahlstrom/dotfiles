@@ -64,12 +64,14 @@ __prompt_command() {
 
     #GIT
     if [ ${gicon} ];then
-      PS1+=$(do_the_arrow "Yel")     
+      PS1+=$(do_the_arrow "Yel")
       FGL=${Yel}
 
       THISGIT=$(git rev-parse --show-toplevel)
       PS1+="$(parse_git_branch)"
-      PS1+="$gicon "
+      PS1+="$gicon"
+      FGL=${Yel}
+      PS1+=" "
     fi
 
     # EXIT
