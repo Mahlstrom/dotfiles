@@ -6,6 +6,7 @@ fi
 function gll(){
     local gi
     local dir
+    local RCol="$(tput sgr0)"
     dir="$1"
     # No directory has been provided, use current
     if [ -z "$dir" ];then
@@ -30,6 +31,6 @@ function gll(){
             gi=$(__git_icon)
             cd ../
         fi
-        echo "$gi  ${f}"
+        echo "$gi $RCol ${f}"
     done
 }
