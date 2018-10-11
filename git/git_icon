@@ -35,7 +35,7 @@ function __git_icon(){
                     echo -ne $Gre${ICON_GITOK}
                 fi
             else
-                echo -ne $Gre${ICON_GITOK}$RCol
+                echo -ne $Gre${ICON_GITOK}
             fi
         fi
     fi
