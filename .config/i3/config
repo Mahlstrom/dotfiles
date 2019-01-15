@@ -20,8 +20,8 @@ set $laptop "eDP-1"
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "term"
 set $ws2 "Browse"
-set $ws3 "PyCharm"
-set $ws4 "IDEA"
+set $ws3 "IDEA"
+set $ws4 "Pycharm"
 set $ws5 "PHPStorm"
 set $ws6 "6"
 set $ws7 "Hiri"
@@ -211,18 +211,18 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 for_window [class="^.*jetbrains-idea.*$"] layout tabbed
-for_window [class="^.*jetbrains-idea.*$"] move to workspace $ws4
+for_window [class="^.*jetbrains-idea.*$"] move to workspace $ws1
 for_window [class="^.*jetbrains-idea.*$"] resize set 2558 1420
 for_window [class="^.*jetbrains-idea.*$"] move absolute position 2558 0
 for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
-
-for_window [title=".*Chromium"] move to workspace $ws2
-for_window [title=".*Chromium"] fullscreen
+for_window [window_role="app" title="^Authy$"] floating enable
+for_window [title=".*Google Chrome"] layout tabbed
+for_window [title=".*Google Chrome"] move to workspace $ws2
 for_window [title=".*Sublime Text.*"] move to workspace $ws9
 for_window [title=".*Spotify.*"] move to workspace $ws8
-#assign [class="jetbrains-idea"] $ws4
+#assign [class="jetbrains-idea"] $ws3
 #for_window [class="jetbrains-idea"] floating enable
-#for_window [class="jetbrains-idea"] move workspace $ws4
+#for_window [class="jetbrains-idea"] move workspace $ws3
 #for_window [class="jetbrains-idea"] resize set 2550 1391
 #for_window [class="jetbrains-idea"] move absolute position 0 0
 
@@ -231,7 +231,8 @@ for_window [title=".*Spotify.*"] move to workspace $ws8
 bar {
         status_command i3blocks
 }
-exec_always "xrandr --output DP-2-8 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-2-8 --off --output DP-1 --mode 2560x1440 --pos 2560x0 --rotate normal --output eDP-1 --mode 2560x1600 --pos 0x1440 --rotate normal --output DP-2 --off"
+#exec_always "xrandr --output DP-2-8 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-2-8 --off --output DP-1 --mode 2560x1440 --pos 2560x0 --rotate normal --output eDP-1 --mode 2560x1600 --pos 0x1440 --rotate normal --output DP-2 --off"
+exec_always "xrandr --output DP-2-8 --mode 2560x1440 --rotate left --pos 0x0 --primary --output DP-1   --mode 2560x1440 --rotate normal --right-of DP-2-8 --output eDP-1  --mode 2560x1600 --rotate normal --left-of DP-2-8"
 exec --no-startup-id xset dpms 600
 exec xautolock -time 15 -locker 'i3lock -c 000000' &
 exec compton
