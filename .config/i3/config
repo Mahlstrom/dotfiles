@@ -219,7 +219,7 @@ for_window [window_role="app" title="^Authy$"] floating enable
 for_window [title=".*Google Chrome"] layout tabbed
 for_window [title=".*Google Chrome"] move to workspace $ws2
 for_window [title=".*Sublime Text.*"] move to workspace $ws9
-for_window [title=".*Spotify.*"] move to workspace $ws8
+for_window [class=".*spotify.*"] move to workspace $ws8
 #assign [class="jetbrains-idea"] $ws3
 #for_window [class="jetbrains-idea"] floating enable
 #for_window [class="jetbrains-idea"] move workspace $ws3
