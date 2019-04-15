@@ -12,8 +12,8 @@
 set $mod Mod4
 
 
-set $dell "DP-2-8"
-set $apple "DP-1"
+set $dell "DP-2-2-8"
+set $apple "DP-2-1-8"
 set $laptop "eDP-1"
 
 # Define names for default workspaces for which we configure key bindings later on.
@@ -181,7 +181,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warnWing -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -210,29 +210,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-for_window [class="^.*jetbrains-idea.*$"] layout tabbed
-for_window [class="^.*jetbrains-idea.*$"] move to workspace $ws1
-for_window [class="^.*jetbrains-idea.*$"] resize set 2558 1420
-for_window [class="^.*jetbrains-idea.*$"] move absolute position 2558 0
+for_window [class="^.*jetbrains-pycharm.*$"] move to workspace $ws1
 for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
 for_window [window_role="app" title="^Authy$"] floating enable
 for_window [title=".*Google Chrome"] layout tabbed
 for_window [title=".*Google Chrome"] move to workspace $ws2
 for_window [title=".*Sublime Text.*"] move to workspace $ws9
 for_window [class=".*spotify.*"] move to workspace $ws8
-#assign [class="jetbrains-idea"] $ws3
-#for_window [class="jetbrains-idea"] floating enable
-#for_window [class="jetbrains-idea"] move workspace $ws3
-#for_window [class="jetbrains-idea"] resize set 2550 1391
-#for_window [class="jetbrains-idea"] move absolute position 0 0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3blocks
 }
-#exec_always "xrandr --output DP-2-8 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP-2-8 --off --output DP-1 --mode 2560x1440 --pos 2560x0 --rotate normal --output eDP-1 --mode 2560x1600 --pos 0x1440 --rotate normal --output DP-2 --off"
-exec_always "xrandr --output DP-2-8 --mode 2560x1440 --rotate left --pos 0x0 --primary --output DP-1   --mode 2560x1440 --rotate normal --right-of DP-2-8 --output eDP-1  --mode 2560x1600 --rotate normal --left-of DP-2-8"
+exec_always "xrandr --output eDP-1  --mode 1920x1080 --rotate normal --pos 0x1480 --output DP-2-2-8 --mode 2560x1440 --rotate left --pos 1920x0 --output DP-2-1-8   --mode 2560x1440 --rotate normal --pos 3360x1120"
 exec --no-startup-id xset dpms 600
 exec xautolock -time 15 -locker 'i3lock -c 000000' &
 exec compton
